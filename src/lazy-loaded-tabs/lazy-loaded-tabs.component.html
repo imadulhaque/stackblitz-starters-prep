@@ -1,0 +1,8 @@
+<mat-tab-group (selectedTabChange)="selectedTabChanged()">
+  <mat-tab *ngFor="let tab of tabs; let i = index" [label]="tab.label">
+    <ng-template matTabContent>
+      <!-- Content 1 - Loaded -->
+      <app-tab-content [name]="i" [data]="tab.formSrc"></app-tab-content>
+    </ng-template>
+  </mat-tab>
+</mat-tab-group>
