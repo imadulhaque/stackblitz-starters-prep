@@ -40,6 +40,10 @@ export class TicketListComponent implements OnInit, OnDestroy {
     this.ticketStore.changeTicketState({ticket: ticket, state: TicketState.Open});
   }
 
+  setToInProgress(ticket: Ticket) {
+    this.ticketStore.changeTicketState({ticket: ticket, state: TicketState.InProgress});
+  }
+
   ngOnDestroy() {
     console.log('Destroyed', this.ticketState);
   }
