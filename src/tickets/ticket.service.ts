@@ -23,6 +23,24 @@ export class TicketService {
       description: 'Tile color is not as per theme',
       state: TicketState.InProgress,
     },
+    {
+      id: 4,
+      title: 'Fix title margin',
+      description: 'Tile color is not as per theme',
+      state: TicketState.Open,
+    },
+    {
+      id: 5,
+      title: 'Fix Header margin',
+      description: 'Tile color is not as per theme',
+      state: TicketState.Closed,
+    },
+    {
+      id: 6,
+      title: 'Fix Body Text margin',
+      description: 'Tile color is not as per theme',
+      state: TicketState.InProgress,
+    },
   ];
   constructor() {}
 

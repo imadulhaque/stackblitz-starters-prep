@@ -5,31 +5,16 @@
     <button
       class="app-mat-stroked-button"
       mat-stroked-button
-      *ngIf="ticketState === TicketState.Open"
+      
       class="list-button"
-      (click)="setToInProgress(t)"
+      (click)="changeTicketState(t)"
     >
-      Set to In Progress
-      <!--mat-icon-button <mat-icon>close</mat-icon> -->
-    </button>
-    <button
-      mat-stroked-button
-      *ngIf="ticketState === TicketState.Closed"
-      class="list-button"
-      (click)="openTicket(t)"
-    >
-      Reopen
-      <!-- mat-icon-button <mat-icon>lock_open_right</mat-icon> -->
-    </button>
-    <button
-      mat-stroked-button
-      *ngIf="ticketState === TicketState.InProgress"
-      class="list-button"
-      (click)="closeTicket(t)"
-    >
-      Close
       <!-- mat-icon-button <mat-icon>close</mat-icon> -->
+
+    <ng-container *ngIf="ticketState === TicketState.Open">Set to In Progress</ng-container>
+    <ng-container *ngIf="ticketState === TicketState.Closed">Reopen</ng-container>
+    <ng-container *ngIf="ticketState === TicketState.InProgress">Close</ng-container>
     </button>
-  </mat-list-item>
+   </mat-list-item>
 </mat-nav-list>
 <!-- <p>Options selected: {{ shoes.selectedOptions.selected.length }}</p> -->

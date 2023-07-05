@@ -3,10 +3,7 @@
   justify-content: space-between;
 }
 
-.app-mat-list-item {
-    display:flex;
 
-}
 .app-mat-stroked-button{
-  justify-self: end;
+  float: left;
 }

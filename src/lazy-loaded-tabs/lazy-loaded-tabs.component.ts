@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { MatTabsModule } from '@angular/material/tabs';
 import { TicketListComponent } from '../tickets/ticket-list/ticket-list.component';
 import { TabContentComponent } from '../tab-content/tab-content.component';
@@ -19,15 +19,16 @@ import { TicketState } from '../tickets/ticket.model';
     TicketListComponent,
   ],
   providers: [TicketStore, TicketService],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LazyLoadedTabsComponent implements OnInit {
-  public tabs: { label: string; formSrc: string }[] = [];
+  // public tabs: { label: string; formSrc: string }[] = [];
   TicketState = TicketState;
   constructor(
     private ticketService: TicketService,
     private ticketStore: TicketStore
   ) {
-    this.createFakeTabs();
+    // this.createFakeTabs();
   }
 
   ngOnInit() {
@@ -37,21 +38,20 @@ export class LazyLoadedTabsComponent implements OnInit {
         this.ticketStore.loadTickets(tickets);
       },
     });
-    // fetchAllTickets;
   }
 
   public selectedTabChanged() {
     console.log('tab changed');
   }
 
-  private createFakeTabs() {
-    const tabs = [
-      { label: 'zero', formSrc: 'content for zero' },
-      { label: 'one', formSrc: 'content for one' },
-      { label: 'two', formSrc: 'content for two' },
-    ];
+  // private createFakeTabs() {
+  //   const tabs = [
+  //     { label: 'zero', formSrc: 'content for zero' },
+  //     { label: 'one', formSrc: 'content for one' },
+  //     { label: 'two', formSrc: 'content for two' },
+  //   ];
 
-    this.tabs = tabs;
-    console.log('setting tabs');
-  }
+  //   this.tabs = tabs;
+  //   console.log('setting tabs');
+  // }
 }

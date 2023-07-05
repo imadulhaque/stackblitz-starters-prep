@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
@@ -13,6 +13,7 @@ import { TicketStore } from '../ticket.store';
   templateUrl: './ticket-list.component.html',
   styleUrls: ['./ticket-list.component.css'],
   imports: [CommonModule, MatButtonModule, MatListModule, MatIconModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TicketListComponent implements OnInit, OnDestroy {
   @Input() ticketState!: TicketState;
@@ -33,15 +34,36 @@ export class TicketListComponent implements OnInit, OnDestroy {
   }
 
   closeTicket(ticket: Ticket) {
-    this.ticketStore.changeTicketState({ticket: ticket, state: TicketState.Closed});
+    this.ticketStore.changeTicketState({
+      ticket: ticket,
+      state: TicketState.Closed,
+    });
   }
 
   openTicket(ticket: Ticket) {
-    this.ticketStore.changeTicketState({ticket: ticket, state: TicketState.Open});
+    this.ticketStore.changeTicketState({
+      ticket: ticket,
+      state: TicketState.Open,
+    });
   }
 
   setToInProgress(ticket: Ticket) {
-    this.ticketStore.changeTicketState({ticket: ticket, state: TicketState.InProgress});
+    this.ticketStore.changeTicketState({
+      ticket: ticket,
+      state: TicketState.InProgress,
+    });
+  }
+
+  changeTicketState(ticket: Ticket) {
+    let state: TicketState;
+    if (ticket.state === TicketState.Open) {
+      state = TicketState.InProgress;
+    } else if (this.ticketState === TicketState.Closed) {
+      state = TicketState.Open;
+    } else {
+      state = TicketState.Closed;
+    }
+    this.ticketStore.changeTicketState({ ticket: ticket, state: state });
   }
 
   ngOnDestroy() {
